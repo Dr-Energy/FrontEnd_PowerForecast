@@ -1,6 +1,6 @@
 import React from 'react'
 import WeatherCard from './mainComponents/WeatherCard';
-import TailSelect from '../UI/TailSelect';
+import LocationSel from './LocationSel';
 
 export default function Main() {
     const weatherData = [
@@ -39,15 +39,8 @@ export default function Main() {
       ];
   return (
     <div className='flex flex-col'>
-        <div className='flex justify-end items-end w-full'>
-            <label for="countries" class="block mb-2 text-xs font-medium text-gray-900 px-2 text-center">지역을 선택해 주세요</label>
-            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5">
-                <option selected>시 / 군</option>
-                <option value="부산광역시">부산광역시</option>
-                <option value="서울특별시">서울특별시</option>
-                <option value="대구광역시">대구광역시</option>
-                <option value="김해시">김해시</option>
-            </select>
+        <div className='flex justify-end items-center w-full'>
+        <LocationSel/>
         </div>
         <div class="grid gap-4">
             <div class="grid grid-cols-4 gap-1 w-full">
@@ -68,15 +61,15 @@ export default function Main() {
             <div className='flex justify-center items-center'>
                 <div className='w-3/5 mr-3'>
                     <div>
-                        <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
+                        <img className="col-span-3 h-auto max-w-full rounded-lg bg-opacity-70" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
                     </div>
                     <div>
-                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
                     </div>
                 </div>
                 <div className='w-2/5'>
-                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>알람 이력</div>
+                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>알람 이력</div>
                 </div>
             </div>
         </div>

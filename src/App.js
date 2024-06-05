@@ -81,45 +81,22 @@ import AlarmHistory from './components/AlarmHistory.js';
 import Main from './components/Main.js';
 import MyPage from './components/MyPage.js';
 import MyPageEdit from './components/MyPageEdit.js';
+import FindId from './components/FindId.js';
+import FindPw from './components/FindPw.js';
+import Header from './components/Header.js';
 
 function App() {
   
 return (
 <BrowserRouter>
-<div className="flex h-screen bg-[#F4FAFF]">
+<div 
+  className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
+  
+>
+  {/* <img src={bg1}/>  */}
   <Sidebar/>
-    <div className="flex-grow flex flex-col items-center justify-start relative p-3">
-      <header className="w-full flex justify-start items-center bg-white p-3 shadow rounded-lg ">
-        <div className="flex w-full justify-between items-center ml-4">
-          <div className='justify-start items-center font-extrabold text-2xl text-[#1D3461]'>
-          <Routes>
-            <Route path="/register" element={<span>회원가입</span>} />
-            <Route path="/login" element={<span>로그인</span>} />
-            <Route path="/alarmHistory" element={<span>알람이력</span>} />
-            <Route path="/myPage" element={<span>마이페이지</span>} />
-            <Route path="/" element={<span>메인</span>} />
-            <Route path="/mypageEdit" element={<span>나의 정보 수정</span>} />
-
-          </Routes>
-          </div>
-          <div className='flex justify-center items-center'>
-            {/* <Link to="/login"> */}
-              <a href="/login" className='bg-[#1D3461] text-white rounded-3xl p-2 mx-2 text-sm shadow shadow-slate-400 hover:bg-gray-500'>
-                login</a>
-            {/* </Link> */}
-           
-              <a href="/myPage" className="flex justify-center items-center font-bold text-sm bg-[#1D3461] text-white rounded-3xl p-1 px-2 mx-1 shadow shadow-slate-400 hover:bg-gray-500">
-                <img
-                src="https://via.placeholder.com/40"
-                alt="profile"
-                className="w-10 h-10 rounded-full mr-2"
-                />
-                Hong Gil Dong
-                </a>
-             
-            </div>
-        </div>
-      </header>
+    <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">
+      <Header/>
       <div className='flex-grow flex items-center justify-center w-full max-w-3xl'>
       <Routes>
         <Route path="/register" element={<Register/>} />
@@ -128,6 +105,8 @@ return (
         <Route path="/myPage" element={<MyPage/>} />
         <Route path="/" element={<Main/>} />
         <Route path='/mypageEdit' element={<MyPageEdit/>} />
+        <Route path='/findId' element={<FindId/>} />
+        <Route path='/findPw' element={<FindPw/>} />
       </Routes>
       </div>
     </div>
