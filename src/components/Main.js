@@ -61,7 +61,7 @@ export default function Main() {
             <div className='flex justify-center items-center'>
                 <div className='w-3/5 mr-3'>
                     <div>
-                        <img className="col-span-3 h-auto max-w-full rounded-lg bg-opacity-70" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
+                        <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
                     </div>
                     <div>
                     <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>

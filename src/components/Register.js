@@ -7,7 +7,7 @@ export default function Register() {
           <form action="#" method="POST" className="space-y-6">
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">ID</label>
-              <input type="text" id="username" name="username" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <input type="text" id="username" name="username" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>

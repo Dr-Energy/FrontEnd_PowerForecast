@@ -74,43 +74,41 @@
 
 import React, {useState} from 'react';
 import {BrowserRouter, Router, Route, Routes, Link} from 'react-router-dom';
-import Sidebar from './components/Sidebar.js';
-import LoginForm from './components/LoginForm';
-import Register from './components/Register.js';
+
 import AlarmHistory from './components/AlarmHistory.js';
-import Main from './components/Main.js';
-import MyPage from './components/MyPage.js';
-import MyPageEdit from './components/MyPageEdit.js';
+import My_Page from './Pages/My_Page.js';
 import FindId from './components/FindId.js';
 import FindPw from './components/FindPw.js';
-import Header from './components/Header.js';
+import Main_Page from './Pages/Main_Page.js';
+import Register_Page from './Pages/Register_Page.js';
+import Login_Page from './Pages/Login_Page.js';
+import Edit_Page from './Pages/Edit_Page.js';
+import Alarm_Page from './Pages/Alarm_Page.js';
+import FindId_Page from './Pages/FindId_Page.js';
+import FindPw_Page from './Pages/FindPw_Page.js';
+
 
 function App() {
   
 return (
 <BrowserRouter>
-<div 
-  className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
-  
->
+
   {/* <img src={bg1}/>  */}
-  <Sidebar/>
-    <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">
-      <Header/>
-      <div className='flex-grow flex items-center justify-center w-full max-w-3xl'>
+
+
       <Routes>
-        <Route path="/register" element={<Register/>} />
-        <Route path="/login" element={<LoginForm/>} />
-        <Route path="/alarmHistory" element={<AlarmHistory/>} />
-        <Route path="/myPage" element={<MyPage/>} />
-        <Route path="/" element={<Main/>} />
-        <Route path='/mypageEdit' element={<MyPageEdit/>} />
-        <Route path='/findId' element={<FindId/>} />
-        <Route path='/findPw' element={<FindPw/>} />
+        <Route path="/" element={<Main_Page/>} />
+        <Route path="/login" element={<Login_Page/>} />
+        <Route path="/register" element={<Register_Page/>} />
+        <Route path="/myPage" element={<My_Page/>} />
+        <Route path='/mypageEdit' element={<Edit_Page/>} />
+        <Route path='/findId' element={<FindId_Page/>} />
+        <Route path='/findPw' element={<FindPw_Page/>} />
+        <Route path="/alarmHistory" element={<Alarm_Page/>} />
+        
       </Routes>
-      </div>
-    </div>
-</div>
+
+
 </BrowserRouter>
 );
 }

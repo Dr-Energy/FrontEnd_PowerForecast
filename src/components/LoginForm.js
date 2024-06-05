@@ -20,9 +20,9 @@ return (
         </button>
         <div className='flex justify-between items-center text-sm pt-5 text-white'>
             
-            <a href='/findId'>아이디 찾기</a>
-            <a href='/findPw'>비밀번호 찾기</a>
-            <a href='/register'>register</a>
+            <a href='/findId'>Find ID</a>
+            <a href='/findPw'>Find Password</a>
+            <a href='/register'>Register</a>
             
         </div>
 </div>
