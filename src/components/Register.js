@@ -1,4 +1,5 @@
 import React from 'react'
+import LocationSel from './LocationSel'
 
 export default function Register() {
   return (
@@ -24,6 +25,7 @@ export default function Register() {
               <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
               <input type="text" id="address" name="address" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
+            <LocationSel/>
             <div className="flex justify-center">
               <button type="submit" className="w-full py-2 px-4 bg-[#1F487E] text-white font-semibold rounded-md hover:bg-gray-700">REGISTER</button>
             </div>

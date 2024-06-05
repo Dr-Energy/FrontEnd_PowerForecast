@@ -59,8 +59,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div>
-    <div className="flow-root bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl">
+    <div className="flow-root">
       <ul role="list" className="-mb-8">
         {timeline.map((event, eventIdx) => (
           <li key={event.id}>
@@ -97,9 +96,6 @@ export default function Example() {
           </li>
         ))}
       </ul>
-    </div>
-    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div>
     </div>
   )
 }

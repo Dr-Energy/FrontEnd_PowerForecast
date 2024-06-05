@@ -71,12 +71,12 @@ export default function Main() {
                         <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
                     </div>
                     <div>
-                        <div>기존 전력 부하정도</div>
-                        <div>예측 전력 부하정도</div>
+                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
                     </div>
                 </div>
                 <div className='w-2/5'>
-                    <div className='col-span-1 bg-white rounded-md'>알림이력</div>
+                    <div className='bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>알람 이력</div>
                 </div>
             </div>
         </div>

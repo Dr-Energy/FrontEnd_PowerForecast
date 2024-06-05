@@ -80,6 +80,7 @@ import Register from './components/Register.js';
 import AlarmHistory from './components/AlarmHistory.js';
 import Main from './components/Main.js';
 import MyPage from './components/MyPage.js';
+import MyPageEdit from './components/MyPageEdit.js';
 
 function App() {
   
@@ -97,34 +98,37 @@ return (
             <Route path="/alarmHistory" element={<span>알람이력</span>} />
             <Route path="/myPage" element={<span>마이페이지</span>} />
             <Route path="/" element={<span>메인</span>} />
+            <Route path="/mypageEdit" element={<span>나의 정보 수정</span>} />
+
           </Routes>
           </div>
           <div className='flex justify-center items-center'>
-            <Link to="/login">
-              <button className='bg-[#1D3461] text-white rounded-3xl p-2 mx-2 text-sm shadow shadow-slate-400 hover:bg-gray-500'>
-                login</button>
-            </Link>
-            <Link to="/myPage">
-              <button className="flex justify-center items-center font-bold text-sm bg-[#1D3461] text-white rounded-3xl p-1 px-2 mx-1 shadow shadow-slate-400 hover:bg-gray-500">
+            {/* <Link to="/login"> */}
+              <a href="/login" className='bg-[#1D3461] text-white rounded-3xl p-2 mx-2 text-sm shadow shadow-slate-400 hover:bg-gray-500'>
+                login</a>
+            {/* </Link> */}
+           
+              <a href="/myPage" className="flex justify-center items-center font-bold text-sm bg-[#1D3461] text-white rounded-3xl p-1 px-2 mx-1 shadow shadow-slate-400 hover:bg-gray-500">
                 <img
                 src="https://via.placeholder.com/40"
                 alt="profile"
                 className="w-10 h-10 rounded-full mr-2"
                 />
                 Hong Gil Dong
-                </button>
-              </Link>
+                </a>
+             
             </div>
         </div>
       </header>
       <div className='flex-grow flex items-center justify-center w-full max-w-3xl'>
       <Routes>
-              <Route path="/register" element={<Register/>} />
-              <Route path="/login" element={<LoginForm/>} />
-              <Route path="/alarmHistory" element={<AlarmHistory/>} />
-              <Route path="/myPage" element={<MyPage/>} />
-              <Route path="/" element={<Main/>} />
-            </Routes>
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<LoginForm/>} />
+        <Route path="/alarmHistory" element={<AlarmHistory/>} />
+        <Route path="/myPage" element={<MyPage/>} />
+        <Route path="/" element={<Main/>} />
+        <Route path='/mypageEdit' element={<MyPageEdit/>} />
+      </Routes>
       </div>
     </div>
 </div>
