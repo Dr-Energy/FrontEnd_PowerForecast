@@ -1,13 +1,14 @@
 import React from 'react';
-import { FaBell, FaUser, FaClock, FaSitemap, FaUsers, FaFolderOpen, FaCog } from 'react-icons/fa';
+import { FaBell, FaUser} from 'react-icons/fa';
+import { FaPowerOff } from "react-icons/fa6";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 
 
 const Sidebar = () => {
 return (
-<div className="w-1/6 bg-white bg-opacity-20 text-white flex flex-col p-4 m-4 rounded-xl shadow-xl shadow-slate-700">
-<div className="text-2xl font-bold mb-8">Dr.E</div>
+<div className="w-1/5 w-min-1/6 bg-white bg-opacity-20 text-white flex flex-col p-4 m-4 rounded-xl">
+<div className="text-3xl mb-8 flex items-center justify-center pt-3">닥터 에너지 <span className='pl-2 text-green-200 text-xl'>{<FaPowerOff/>}</span></div>
 <Link to="/">
 <SidebarItem icon={<LuLayoutDashboard />} label="Dashboard"/>
 </Link>

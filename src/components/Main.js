@@ -42,7 +42,7 @@ export default function Main() {
         <div className='flex justify-end items-center w-full'>
         <LocationSel/>
         </div>
-        <div class="grid gap-4">
+        <div class="grid gap-3">
             <div class="grid grid-cols-4 gap-1 w-full">
                 {/* <div className='w-full flex justify-between items-center mt-4'> */}
                     {weatherData.map((data, index) => (
@@ -58,7 +58,7 @@ export default function Main() {
                     ))}
                 {/* </div> */}
             </div>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-start'>
                 <div className='w-3/5 mr-3'>
                     <div>
                         <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
@@ -69,7 +69,7 @@ export default function Main() {
                     </div>
                 </div>
                 <div className='w-2/5'>
-                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>알람 이력</div>
+                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl'>알람 이력</div>
                 </div>
             </div>
         </div>
