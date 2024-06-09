@@ -6,7 +6,7 @@ const WeatherCard = ({ icon, title, description, value, change, changeDescriptio
   return (
     <div className="bg-[#F4FAFF] bg-opacity-50 p-5 rounded-lg shadow-md flex flex-col items-start justify-start w-full mt-2">
       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md mb-4">
-        <img src={icon} alt={title} className="w-8 h-8" />
+        {icon}
       </div>
       <h3 className="text-xs font-bold">{title}</h3>
       <p className="text-xl font-bold">{description}</p>

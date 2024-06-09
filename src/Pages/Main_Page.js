@@ -13,7 +13,7 @@ export default function Main_Page() {
   <Sidebar/>
     <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">
       <Header title="메인"/>
-      <div className='flex-grow flex items-center justify-center w-full max-w-3xl'>
+      <div className='flex flex-col items-center justify-center w-full max-w-3xl mt-3'>
       <Main/>
       </div>
     </div>

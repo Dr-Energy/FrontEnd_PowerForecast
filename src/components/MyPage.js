@@ -14,7 +14,7 @@ export default function MyPage() {
             <table className="min-w-full divide-y divide-gray-300">
               <tbody className="divide-y divide-gray-200">
                 {people.map((person) => (
-                  <React.Fragment key={person.email}>
+                  <React.Fragment key={person.id}>
                   <tr>
                     <th className="text-left px-4 py-2 text-white">이름</th>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-white">

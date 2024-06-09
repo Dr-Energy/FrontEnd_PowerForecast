@@ -59,7 +59,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div>
+    <div className='m-5'>
     <div className="flow-root bg-white p-10 rounded-lg shadow-lg w-full max-w-2xl">
       <ul role="list" className="-mb-8">
         {timeline.map((event, eventIdx) => (

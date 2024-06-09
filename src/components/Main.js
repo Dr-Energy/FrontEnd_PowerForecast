@@ -1,11 +1,12 @@
 import React from 'react'
 import WeatherCard from './mainComponents/WeatherCard';
 import LocationSel from './LocationSel';
+import { WiRain } from "react-icons/wi";
 
 export default function Main() {
     const weatherData = [
         {
-          icon: 'https://via.placeholder.com/40', 
+          icon: <WiRain className="text-4xl" />, 
           title: 'Forecast Today', 
           description: '오늘의 기상', 
           value: '3°C increase from yesterday', 
@@ -13,7 +14,7 @@ export default function Main() {
           changeDescription: 'increase'
         },
         {
-          icon: 'https://via.placeholder.com/40', 
+          icon: '26°C', 
           title: 'Apparent Temperature', 
           description: '체감 온도', 
           value: '1°C decrease from yesterday', 
@@ -21,7 +22,7 @@ export default function Main() {
           changeDescription: 'decrease'
         },
         {
-          icon: 'https://via.placeholder.com/40', 
+          icon: '71%', 
           title: 'Humidity', 
           description: '습도', 
           value: '2% increase from yesterday', 
@@ -29,7 +30,7 @@ export default function Main() {
           changeDescription: 'increase'
         },
         {
-          icon: 'https://via.placeholder.com/40', 
+          icon: '80%', 
           title: 'Rainfall', 
           description: '강수량', 
           value: '2.0mm expected', 
@@ -42,8 +43,8 @@ export default function Main() {
         <div className='flex justify-end items-center w-full'>
         <LocationSel/>
         </div>
-        <div class="grid gap-3">
-            <div class="grid grid-cols-4 gap-1 w-full">
+        <div className="grid gap-3">
+            <div className="grid grid-cols-4 gap-1 w-full">
                 {/* <div className='w-full flex justify-between items-center mt-4'> */}
                     {weatherData.map((data, index) => (
                         <WeatherCard
