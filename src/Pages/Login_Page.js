@@ -12,7 +12,7 @@ export default function Login_Page() {
   {/* <img src={bg1}/>  */}
   <Sidebar/>
     <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">
-      <Header title="로그인"/>
+      <Header title="Login"/>
       <div className='flex-grow flex items-center justify-center w-full max-w-3xl'>
       <LoginForm/>
       </div>

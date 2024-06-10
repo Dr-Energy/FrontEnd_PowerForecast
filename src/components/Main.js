@@ -6,7 +6,7 @@ import { WiRain } from "react-icons/wi";
 export default function Main() {
     const weatherData = [
         {
-          icon: <WiRain className="text-4xl" />, 
+          icon: <WiRain className="text-7xl" />, 
           title: 'Forecast Today', 
           description: '오늘의 기상', 
           value: '3°C increase from yesterday', 
@@ -65,12 +65,12 @@ export default function Main() {
                         <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
                     </div>
                     <div>
-                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
                     </div>
                 </div>
                 <div className='w-2/5'>
-                    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl'>알람 이력</div>
+                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl'>알람 이력</div>
                 </div>
             </div>
         </div>

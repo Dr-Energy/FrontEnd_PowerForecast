@@ -1,10 +1,11 @@
-import React from 'react'
+
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import AlarmHistory from '../components/AlarmHistory'
 import LocationSel from '../components/LocationSel'
 
 export default function Alarm_Page() {
+
   return (
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"

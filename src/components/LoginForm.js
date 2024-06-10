@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';//로그인 상태를 알기위함
 
 const LoginForm = () => {
     const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    memberId: '',
-    password: ''
+    const { login } = useContext(AuthContext);
+    const [formData, setFormData] = useState({
+      memberId: '',
+      password: ''
   });
 
   const handleChange = (e) => {
@@ -21,8 +23,12 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://10.125.121.224:8080/login', formData);
-      console.log('Login successful:', response.data);
+      console.log('Login successful:', response.data.nickname);
       localStorage.setItem('token', response.data);
+      localStorage.setItem('nickname', response.data.nickname);//키값으로 정하고, 마이페이지의 정보가 필요한때마다 백에 요청한다.
+      
+      const userLocation = response.data.location;  // 서버에서 위치 정보를 가져온다.
+      login(userLocation);
 
         navigate("/");
       // 로그인 성공 후 처리
@@ -33,7 +39,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white bg-opacity-40 p-10 rounded-lg shadow-lg w-full max-w-sm">
+    <form onSubmit={handleSubmit} className="bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-sm">
       <input
         type="text"
         name="memberId"

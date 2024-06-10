@@ -24,7 +24,7 @@ return (
 };
 
 const SidebarItem = ({ icon, label }) => (
-<div className="flex items-center p-2 hover:bg-sky-100 hover:bg-opacity-30 cursor-pointer">
+<div className="flex items-center p-2 hover:bg-sky-100 hover:bg-opacity-30 hover:rounded-md cursor-pointer">
 <div className="mr-2">{icon}</div>
 <div className="text-lg">{label}</div>
 </div>

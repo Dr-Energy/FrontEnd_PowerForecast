@@ -21,7 +21,7 @@ export default function LocationSel() {
     tm = new Set(tm) ;
     tm = [...tm] ;
     setLargeCategories(tm)
-    console.log("tdata tm => ", tm) 
+    // console.log("tdata tm => ", tm) 
   } , []);
 
   const handleLargeChange = (value) => {
