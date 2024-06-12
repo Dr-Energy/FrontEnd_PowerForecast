@@ -6,7 +6,7 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-export default function LocationSel() {
+export default function LocationSel( { onChange = () => {}}) {
     // const [address, setAddress] = useState([]);
     const [largeCategories, setLargeCategories] = useState([]);
     const [selectedLarge, setSelectedLarge] = useState('');
@@ -31,6 +31,7 @@ export default function LocationSel() {
     setSelectedMedium('');
     setSmallCategories([]);
     setSelectedSmall('');
+    onChange({ sido: value, gugun: '', eupmyeondong: ''});
   };
 
   const handleMediumChange = (value) => {
@@ -38,61 +39,15 @@ export default function LocationSel() {
     const filteredSmalls = address.filter(item => item.sido === selectedLarge && item.gugun === value).map(item => item.eupmyeondong);
     setSmallCategories([...new Set(filteredSmalls)]);
     setSelectedSmall('');
+    onChange({ sido: selectedLarge, gugun: value, eupmyeondong: '' });
   };
 
   const handleSmallChange = (value) => {
     setSelectedSmall(value);
+    onChange({ sido: selectedLarge, gugun: selectedMedium, eupmyeondong: value });
   };
   return (
     <>
-    {/* <div className="flex justify-between items-center">      
-    <div className="text-lg">
-      <label>
-        
-        <select value={selectedLarge} onChange={handleLargeChange}>
-          <option value="" disabled>시 / 도</option>
-          {largeCategories.map((sido, region_id) => (
-            <option key={region_id} value={sido}>
-              {sido}
-          </option>
-          ))}
-        </select>
-      </label>
-    </div>
-
-    {mediumCategories.length > 0 && (
-      
-  <div className="text-lg px-2">
-    <label>
-          
-          <select value={selectedMedium} onChange={handleMediumChange}>
-            <option value="" disabled>구 / 군</option>
-            {mediumCategories.map((gugun, region_id) => (
-              <option key={region_id} value={gugun}>
-                {gugun}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-    )}
-
-    {smallCategories.length > 0 && (
-      <div className="text-lg px-2">
-        <label>
-          
-          <select value={selectedSmall} onChange={handleSmallChange}>
-            <option value="" disabled>읍 / 면 / 동</option>
-            {smallCategories.map((eupmyeondong, region_id) => (
-              <option key={region_id} value={eupmyeondong}>
-                {eupmyeondong}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-    )}
-  </div> */}
   <div className="flex w-full items-center">      
       <div className="text-lg w-1/3">
         <Listbox value={selectedLarge} onChange={handleLargeChange}>

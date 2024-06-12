@@ -9,7 +9,7 @@ export default function Main() {
           icon: <WiRain className="text-7xl" />, 
           title: 'Forecast Today', 
           description: '오늘의 기상', 
-          value: '3°C increase from yesterday', 
+          value: ' 어제보다 3°C 상승', 
           change: 3, 
           changeDescription: 'increase'
         },
@@ -17,7 +17,7 @@ export default function Main() {
           icon: '26°C', 
           title: 'Apparent Temperature', 
           description: '체감 온도', 
-          value: '1°C decrease from yesterday', 
+          value: ' 어제보다 1°C 하락', 
           change: -1, 
           changeDescription: 'decrease'
         },
@@ -25,7 +25,7 @@ export default function Main() {
           icon: '71%', 
           title: 'Humidity', 
           description: '습도', 
-          value: '2% increase from yesterday', 
+          value: ' 어제보다 2% 상승', 
           change: 2, 
           changeDescription: 'increase'
         },
@@ -33,7 +33,7 @@ export default function Main() {
           icon: '80%', 
           title: 'Rainfall', 
           description: '강수량', 
-          value: '2.0mm expected', 
+          value: '2.0mm 예상', 
           change: 2, 
           changeDescription: 'expected'
         }

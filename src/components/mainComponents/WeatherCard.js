@@ -6,12 +6,12 @@ const WeatherCard = ({ icon, title, description, value, change}) => {
     const fontColor = change > 0 ? '#2587bd' : '#cb7123';
     // const opacity = 0.8;
   return (
-    <div /* style={{backgroundColor, opacity}}*/ className="bg-white bg-opacity-80 p-5 rounded-lg shadow-md flex flex-col items-center justify-start w-full mt-5">
+    <div /* style={{backgroundColor, opacity}}*/ className="bg-white bg-opacity-80 p-5 rounded-lg shadow-md flex flex-col items-center justify-between w-full mt-5">
       <div className='flex flex-col justify-start items-start w-full'>
         {/* <h3 className="text-xs font-bold">{title}</h3> */}
         <p className="text-xl font-bold">{description}</p>
       </div>
-      <div style={{ color: fontColor}} className="flex items-center justify-center w-20 h-20 rounded-lg mb-4 text-4xl">
+      <div style={{ color: fontColor}} className="flex items-center justify-center w-20 h-20 rounded-lg m-2 text-4xl">
         {icon}
       </div>
       <div className='flex justify-center items-center w-full'>

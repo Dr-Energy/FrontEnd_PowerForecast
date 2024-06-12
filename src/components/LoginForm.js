@@ -24,9 +24,11 @@ const LoginForm = () => {
     try {
       const response = await axios.post('http://10.125.121.224:8080/login', formData);
       console.log('Login successful:', response.data.nickname);
-      localStorage.setItem('token', response.data);
-      localStorage.setItem('nickname', response.data.nickname);//키값으로 정하고, 마이페이지의 정보가 필요한때마다 백에 요청한다.
-      
+      localStorage.setItem('ACCESS_TOKEN', response.headers['authorization']);
+      //헤더에서 authorization을 당겨와서 스토리지에 저장하고 마이페이지 등 개인정보가 필요한 곳에서 서버로 보내서 정보를 다시 당겨올 수 있다.
+      localStorage.setItem('nickname', response.data.nickname);//헤더의 유저정보에 넣을 닉네임 저장
+      localStorage.setItem('memberId', response.data.memberId);//
+
       const userLocation = response.data.location;  // 서버에서 위치 정보를 가져온다.
       login(userLocation);
 
