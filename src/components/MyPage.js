@@ -7,7 +7,7 @@ import { AuthContext } from './AuthContext';
 export default function MyPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUserData = async () => {

@@ -70,9 +70,13 @@ export default function AlarmHistory() {
         let response;
         if (isLoggedIn && userLocation) {
           //로그인이 되어 있으면 유저의 위치정보를 갖고온다.
-          response = await axios.get(`http://10.125.121.224:8080/alarms?location=${userLocation}`);
+        //   response = await axios.get(`http://10.125.121.224:8080/history/${userLocation}`);
+        // } else {
+        //   response = await axios.get('http://10.125.121.224:8080/history/region');
+        // }
+        response = await axios.get(`http://192.168.0.5:8080/history/${userLocation}`);
         } else {
-          response = await axios.get('http://10.125.121.224:8080/alarms');
+          response = await axios.get('http://192.168.0.5:8080/history/region');
         }
         setData(response.data);
       } catch (error) {
@@ -84,46 +88,47 @@ export default function AlarmHistory() {
   }, [isLoggedIn, userLocation]);
   return (
     <div className='m-5'>
-    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl">
-      <ul role="list" className="-mb-8">
-        {timeline.map((event, eventIdx) => (
-          <li key={event.id}>
-            <div className="relative pb-8">
-              {eventIdx !== timeline.length - 1 ? (
-                <span className="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
-              ) : null}
-              <div className="relative flex space-x-3">
-                <div>
-                  <span
-                    className={classNames(
-                      event.iconBackground,
-                      'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
-                    )}
-                  >
-                    <event.icon className="h-5 w-5 text-white" aria-hidden="true" />
-                  </span>
-                </div>
-                <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+      <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl">
+        <ul role="list" className="-mb-8">
+          {data.map((event, eventIdx) => (
+            <li key={event.id}>
+              <div className="relative pb-8">
+                {eventIdx !== data.length - 1 ? (
+                  <span className="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
+                ) : null}
+                <div className="relative flex space-x-3">
                   <div>
-                    <p className="text-sm text-gray-500">
-                      {event.content}{' '}
-                      <a href={event.href} className="font-medium text-gray-900">
-                        {event.target}
-                      </a>
-                    </p>
+                    <span
+                      className={classNames(
+                        'bg-gray-400',  // You can adjust this color based on your event type
+                        'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
+                      )}
+                    >
+                      <UserIcon className="h-5 w-5 text-white" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="whitespace-nowrap text-right text-sm text-gray-500">
-                    <time dateTime={event.datetime}>{event.date}</time>
+                  <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        {event.content}{' '}
+                        <a href={event.href} className="font-medium text-gray-900">
+                          {event.target}
+                        </a>
+                      </p>
+                    </div>
+                    <div className="whitespace-nowrap text-right text-sm text-gray-500">
+                      <time dateTime={event.datetime}>{event.date}</time>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+      <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div>
     </div>
-    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div>
-    </div>
-  )
+
+  );
 }

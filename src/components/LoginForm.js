@@ -29,13 +29,18 @@ const LoginForm = () => {
       localStorage.setItem('nickname', response.data.nickname);//헤더의 유저정보에 넣을 닉네임 저장
       localStorage.setItem('memberId', response.data.memberId);//
 
-      const userLocation = response.data.location;  // 서버에서 위치 정보를 가져온다.
+      const userLocation = response.data.regionId;  // 서버에서 위치 정보를 가져온다.
       login(userLocation);
 
         navigate("/");
       // 로그인 성공 후 처리
     } catch (error) {
       console.error('Login error:', error);
+      alert('아이디와 비밀번호가 다릅니다.');
+      setFormData({
+        memberId:'',
+        password:''
+      });
       // 로그인 실패 후 처리
     }
   };
