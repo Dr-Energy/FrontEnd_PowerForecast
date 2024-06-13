@@ -12,7 +12,7 @@ return (
 <Link to="/">
 <SidebarItem icon={<LuLayoutDashboard />} label="Dashboard"/>
 </Link>
-<Link to="/alarmHistory">
+<Link to="/history">
 <SidebarItem icon={<FaBell />} label="알람이력" />
 </Link>
 <Link to="/myPage">

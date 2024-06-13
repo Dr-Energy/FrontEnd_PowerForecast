@@ -6,7 +6,7 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-export default function LocationSel( { onChange = () => {}}) {
+export default function LocationSel( { onChange = () => {} , setSelectedLocation}) {
     // const [address, setAddress] = useState([]);
     const [largeCategories, setLargeCategories] = useState([]);
     const [selectedLarge, setSelectedLarge] = useState('');
@@ -15,6 +15,13 @@ export default function LocationSel( { onChange = () => {}}) {
     const [selectedSmall, setSelectedSmall] = useState('');
     const [smallCategories, setSmallCategories] = useState([]);
 
+    // useEffect(()=>{
+    //   setSelectedLocation({
+    //     sido: selectedLarge,
+    //     gugun: selectedMedium,
+    //     eupmyeondong: selectedSmall
+    //   })
+    // },[selectedLarge, selectedMedium, selectedSmall]);
 
   useEffect(() => {
     let tm = address.map(item => item.sido);
@@ -31,7 +38,7 @@ export default function LocationSel( { onChange = () => {}}) {
     setSelectedMedium('');
     setSmallCategories([]);
     setSelectedSmall('');
-    onChange({ sido: value, gugun: '', eupmyeondong: ''});
+    //onChange({ sido: value, gugun: '', eupmyeondong: ''});
   };
 
   const handleMediumChange = (value) => {
@@ -39,7 +46,7 @@ export default function LocationSel( { onChange = () => {}}) {
     const filteredSmalls = address.filter(item => item.sido === selectedLarge && item.gugun === value).map(item => item.eupmyeondong);
     setSmallCategories([...new Set(filteredSmalls)]);
     setSelectedSmall('');
-    onChange({ sido: selectedLarge, gugun: value, eupmyeondong: '' });
+    //onChange({ sido: selectedLarge, gugun: value, eupmyeondong: '' });
   };
 
   const handleSmallChange = (value) => {
@@ -48,7 +55,7 @@ export default function LocationSel( { onChange = () => {}}) {
   };
   return (
     <>
-  <div className="flex w-full items-center">      
+  <div className="flex w-full items-center min-w-[300px]">      
       <div className="text-lg w-1/3">
         <Listbox value={selectedLarge} onChange={handleLargeChange}>
           {({ open }) => (

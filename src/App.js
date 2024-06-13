@@ -30,7 +30,7 @@ return (
         <Route path='/mypageEdit' element={<PrivateRoute><Edit_Page /></PrivateRoute>} />
         <Route path='/findId' element={<FindId_Page/>} />
         <Route path='/findPw' element={<FindPw_Page/>} />
-        <Route path="/alarmHistory" element={<Alarm_Page/>} />
+        <Route path="/history" element={<Alarm_Page/>} />
       </Routes>
   </BrowserRouter>
 </AuthProvider>
