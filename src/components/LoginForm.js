@@ -46,7 +46,8 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-sm">
+    //method='POST'-> React에서 axios나 fetch로 직접 요청을 보내는 경우, 이 속성을 포함하지 않아도 된다.
+    <form onSubmit={handleSubmit} method='POST' className="bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-sm">
       <input
         type="text"
         name="memberId"

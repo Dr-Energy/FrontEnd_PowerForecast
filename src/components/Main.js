@@ -1,10 +1,48 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from './AuthContext';
+import axios from 'axios';
 import WeatherCard from './mainComponents/WeatherCard';
 import LocationSel from './LocationSel';
 import { WiRain } from "react-icons/wi";
+import AlarmList from './AlarmList';
 
 export default function Main() {
-    const weatherData = [
+  const { isLoggedIn, userLocation } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState({
+    sido: '',
+    gugun: '',
+    eupmyeondong: ''
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response;
+        if (selectedLocation.sido) {
+          const { sido, gugun, eupmyeondong } = selectedLocation;
+          const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;
+          console.log(query);
+          response = await axios.get(`http://10.125.121.224:8080/history?${query}`);
+        } else if (isLoggedIn && userLocation) {
+          response = await axios.get(`http://10.125.121.224:8080/history/${userLocation}`);
+        } else {
+          response = await axios.get('http://10.125.121.224:8080/history/all');
+        }
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [isLoggedIn, userLocation, selectedLocation]);
+  
+  const formatDateTime = (dateTime) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(dateTime).toLocaleDateString(undefined, options);
+  };
+
+  const weatherData = [
         {
           icon: <WiRain className="text-7xl" />, 
           title: 'Forecast Today', 
@@ -39,9 +77,9 @@ export default function Main() {
         }
       ];
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full'>
         <div className='flex justify-end items-center w-full'>
-        <LocationSel/>
+        <LocationSel onChange={setSelectedLocation}/>
         </div>
         <div className="grid gap-3">
             <div className="grid grid-cols-4 gap-1 w-full">
@@ -59,8 +97,8 @@ export default function Main() {
                     ))}
                 {/* </div> */}
             </div>
-            <div className='flex justify-center items-start'>
-                <div className='w-3/5 mr-3'>
+            <div className='flex justify-center items-start w-full'>
+                <div className='w-5/6 mr-3'>
                     <div>
                         <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
                     </div>
@@ -69,13 +107,11 @@ export default function Main() {
                     <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
                     </div>
                 </div>
-                <div className='w-2/5'>
-                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl'>알람 이력</div>
+                <div>
+                  <AlarmList data={data} formatDateTime={formatDateTime} limit={5} />
                 </div>
             </div>
         </div>
-        
-
     </div>
   )
 }

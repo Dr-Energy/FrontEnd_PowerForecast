@@ -2,6 +2,7 @@ import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import axios from 'axios';
+import AlarmList from './AlarmList';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -40,8 +41,8 @@ export default function AlarmHistory({selectedLocation}) {
     return new Date(dateTime).toLocaleDateString(undefined, options);
   };
   return (
-    <div className='m-5 min-w-[300px]'>
-      <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-96 overflow-auto min-w-96">
+    <div className='m-5 w-9/12 min-w-[300px]'>
+      {/* <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-96 overflow-auto min-w-96">
         <ul role="list" className="-mb-8">
           {data.map((event, eventIdx) => (
             <li key={event.alertTime + event.region.eupmyeondong+ eventIdx}>
@@ -75,7 +76,8 @@ export default function AlarmHistory({selectedLocation}) {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
+      <AlarmList data={data} formatDateTime={formatDateTime} />
       <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
       <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div>
     </div>

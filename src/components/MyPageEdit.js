@@ -104,7 +104,7 @@ export default function MyPageEdit() {
         />
       </div>
       <div className="mb-8 flex justify-center items-center">
-        <label className="block text-left text-2xl font-bold mb-2 text-white w-1/5">전화번호</label>
+        <label className="block text-left text-2xl font-bold mb-2 text-white w-1/5">비밀번호</label>
         <input 
           type="password" 
           name="password"
