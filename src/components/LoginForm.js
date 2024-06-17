@@ -29,8 +29,10 @@ const LoginForm = () => {
       localStorage.setItem('nickname', response.data.nickname);//헤더의 유저정보에 넣을 닉네임 저장
       localStorage.setItem('memberId', response.data.memberId);//
 
-      const userLocation = response.data.regionId;  // 서버에서 위치 정보를 가져온다.
-      login(userLocation);
+      // const userLocation = response.data.regionId;  // 서버에서 위치 정보를 가져온다.
+      // login(userLocation);
+      const userData = response.data;  // 서버에서 가져온 사용자 데이터를 userData로 저장
+      login(userData);
 
         navigate("/");
       // 로그인 성공 후 처리

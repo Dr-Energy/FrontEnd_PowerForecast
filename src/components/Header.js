@@ -1,9 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from './AuthContext';
 import { Link } from 'react-router-dom';
 
 export default function Header({title}) {
-
+  // useEffect(()=>{
+  //   console.log(localStorage.getItem('nickname'))
+  // },[])
   const { isLoggedIn, logout } = useContext(AuthContext);
 
   return (

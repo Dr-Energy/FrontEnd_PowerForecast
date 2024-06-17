@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LocationSel from './LocationSel'
+import { AuthContext } from './AuthContext';
 
 export default function MyPageEdit() {
   const navigate = useNavigate();
   //로그인한 사용자의 정보를 저장할 useState
+  const { setUserLocation, userLocation } = useContext(AuthContext);
   const [user, setUser] = useState({
     memberId: '',
     nickname: '',
@@ -18,29 +20,29 @@ export default function MyPageEdit() {
     },
   });
 
+  const fetchUserData = async () => {
+    const token = localStorage.getItem('ACCESS_TOKEN');
+    const memberId = localStorage.getItem('memberId');
+    if (!token) {
+      navigate('/login'); // 토큰이 없으면 로그인 페이지로 리디렉션
+      return;
+    }
+    
+    try {
+      const response = await axios.get(`http://10.125.121.224:8080/user/profile/${memberId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(response.data);
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
+      localStorage.clear();
+      navigate('/login'); // 실패하면 로그인 페이지로 리디렉션
+    }
+  };
+  
   useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem('ACCESS_TOKEN');
-      const memberId = localStorage.getItem('memberId');
-      if (!token) {
-        navigate('/login'); // 토큰이 없으면 로그인 페이지로 리디렉션
-        return;
-      }
-
-      try {
-        const response = await axios.get(`http://10.125.121.224:8080/user/profile/${memberId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user data:', error);
-        localStorage.clear();
-        navigate('/login'); // 실패하면 로그인 페이지로 리디렉션
-      }
-    };
-
     fetchUserData();
   }, [navigate]);
 
@@ -53,6 +55,8 @@ export default function MyPageEdit() {
   };
 
   const handleRegionChange = (newRegion) => {
+    //console.log("new region"+newRegion.target.value);
+    //setUserLocation(newRegion);
     setUser({
       ...user,
       region: newRegion,
@@ -67,12 +71,16 @@ export default function MyPageEdit() {
       return;
     }
     try {
-      await axios.put(`http://10.125.121.224:8080/user/profile`, user, {
+      const response = await axios.put(`http://10.125.121.224:8080/user/profile`, user, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       alert('회원 정보가 성공적으로 수정되었습니다.');
+      //handleRegionChange(response.data.regionId);
+      setUserLocation(response.data.regionId); // 수정된 지역 정보를 AuthContext에 반영
+      
+      //localStorage.setItem 0618에 고칠 내용 -> 회원정보 수정 시 닉네임 미적용
       navigate('/mypage');
     } catch (error) {
       console.error('Failed to update user data:', error);
@@ -88,7 +96,7 @@ export default function MyPageEdit() {
           name="nickname"
           className="w-full px-5 py-4 text-sm text-white bg-transparent placeholder-white border border-gray-300 focus:outline-none focus:border-blue-500 rounded-md" 
           placeholder="닉네임을 입력하세요." 
-          value={user.nickname}
+          value={user.nickname|| ''}
           onChange={handleChange}
         />
       </div>
@@ -99,7 +107,7 @@ export default function MyPageEdit() {
           name="phoneNumber"
           className="w-full px-5 py-4 text-sm text-white bg-transparent placeholder-white border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" 
           placeholder="전화번호를 입력하세요." 
-          value={user.phoneNumber}
+          value={user.phoneNumber|| ''}
           onChange={handleChange}
         />
       </div>
@@ -110,7 +118,7 @@ export default function MyPageEdit() {
           name="password"
           className="w-full px-5 py-4 text-sm text-white bg-transparent placeholder-white border rounded-md border-gray-300 focus:outline-none focus:border-blue-500" 
           placeholder="비밀번호를 입력하세요." 
-          value={user.password}
+          value={user.password|| ''}
           onChange={handleChange}
         />
       </div>

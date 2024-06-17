@@ -17,6 +17,7 @@ export default function AlarmHistory({selectedLocation}) {
     const fetchData = async () => {
       try {
         let response;
+        console.log("loc",userLocation,"/log",isLoggedIn);
         if (selectedLocation.sido) {
           const { sido, gugun, eupmyeondong } = selectedLocation;
           const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;

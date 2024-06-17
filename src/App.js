@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './components/AuthContext'; //로그인 관리를 위한 컴포넌트
 
