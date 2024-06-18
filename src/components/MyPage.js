@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useContext } from 'react'
-import { AuthContext } from './AuthContext';
+import { useRecoilState } from 'recoil';
+import { userState, userLocationState, isLoggedInState } from '../recoil/atoms';
 
 export default function MyPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const { logout } = useContext(AuthContext);
+  const [user, setUser] = useRecoilState(userState);
+  const [userLocation, setUserLocation] = useRecoilState(userLocationState);
+  const setIsLoggedIn = useRecoilState(isLoggedInState)[1];
 
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('ACCESS_TOKEN');
       const memberId = localStorage.getItem('memberId');
-      // console.log("memberID:"+memberId);
       if (!token) {
         navigate('/login'); // 토큰이 없으면 로그인 페이지로 리디렉션
         return;
@@ -26,46 +26,46 @@ export default function MyPage() {
           },
         });
         setUser(response.data);
+        // setUserLocation(response.data.regionId);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
         localStorage.clear();
+        setIsLoggedIn(false);
         navigate('/login'); // 실패하면 로그인 페이지로 리디렉션
       }
     };
 
     fetchUserData();
-  }, [navigate]);
+  }, [navigate, setUser, setUserLocation, setIsLoggedIn]);
 
-  const handleDeleteProfile = (e) => {
+  const handleDeleteProfile = async (e) => {
     e.preventDefault();
     if (window.confirm('확인을 누르면 회원 정보가 삭제됩니다.')) {
       const token = localStorage.getItem('ACCESS_TOKEN');
       const memberId = localStorage.getItem('memberId');
-      axios
-        .delete(
-          `http://10.125.121.224:8080/user/profile/${memberId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then(() => {
-          localStorage.clear();
-          logout();
-          alert('그동안 이용해주셔서 감사합니다.');
-          navigate('/');
-        })
-        .catch((err) => alert(err.response.data.message));
-    } else {
-      return;
+      try {
+        await axios.delete(`http://10.125.121.224:8080/user/profile/${memberId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        localStorage.clear();
+        setUser(null);
+        setIsLoggedIn(false);
+        alert('그동안 이용해주셔서 감사합니다.');
+        navigate('/');
+      } catch (error) {
+        console.error('Failed to delete user:', error);
+        alert('회원 정보 삭제에 실패했습니다.');
+      }
     }
   };
+
   if (!user) {
     return <div>Loading...</div>;
   }
-  return (
 
+  return (
     <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl'>
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -88,7 +88,9 @@ export default function MyPage() {
                 </tr>
                 <tr>
                   <th className="text-left px-4 py-2 text-white">주소</th>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-white">{user.region.sido} {user.region.gugun} {user.region.eupmyeondong}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-white">
+                    {user.region && `${user.region.sido} ${user.region.gugun} ${user.region.eupmyeondong}`}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -107,5 +109,5 @@ export default function MyPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

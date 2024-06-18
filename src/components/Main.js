@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from './AuthContext';
+import React, { useEffect, useState } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { isLoggedInState, userState, userLocationState } from '../recoil/atoms';
 import axios from 'axios';
 import WeatherCard from './mainComponents/WeatherCard';
 import LocationSel from './LocationSel';
@@ -7,13 +8,18 @@ import { WiRain } from "react-icons/wi";
 import AlarmList from './AlarmList';
 
 export default function Main() {
-  const { isLoggedIn, userLocation } = useContext(AuthContext);
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const user = useRecoilValue(userState);
+  const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const [data, setData] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState({
     sido: '',
     gugun: '',
     eupmyeondong: ''
   });
+
+  //지역별 알람이력을 표현하는 코드
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,40 +48,64 @@ export default function Main() {
     return new Date(dateTime).toLocaleDateString(undefined, options);
   };
 
-  const weatherData = [
-        {
-          icon: <WiRain className="text-7xl" />, 
-          title: 'Forecast Today', 
-          description: '오늘의 기상', 
-          value: ' 어제보다 3°C 상승', 
-          change: 3, 
-          changeDescription: 'increase'
-        },
-        {
-          icon: '26°C', 
-          title: 'Apparent Temperature', 
-          description: '체감 온도', 
-          value: ' 어제보다 1°C 하락', 
-          change: -1, 
-          changeDescription: 'decrease'
-        },
-        {
-          icon: '71%', 
-          title: 'Humidity', 
-          description: '습도', 
-          value: ' 어제보다 2% 상승', 
-          change: 2, 
-          changeDescription: 'increase'
-        },
-        {
-          icon: '80%', 
-          title: 'Rainfall', 
-          description: '강수량', 
-          value: '2.0mm 예상', 
-          change: 2, 
-          changeDescription: 'expected'
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        let response;
+        if (selectedLocation.sido) {
+          const { sido, gugun, eupmyeondong } = selectedLocation;
+          const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;
+          response = await axios.get(`http://10.125.121.224:8080/main/weather?${query}`);
+        } else {
+          response = await axios.get('http://10.125.121.224:8080/main/weather');
         }
-      ];
+        console.log('weather:',response.data);
+        const weather = response.data;
+
+        const formattedWeatherData = [
+          {
+            icon: <WiRain className="text-7xl" />, 
+            title: 'Temperature', 
+            description: '기온', 
+            value: `${weather[0].temp}°C`, 
+            change: `${(weather[0].temp - weather[1].temp).toFixed(2)}°C`, 
+            changeDescription: weather[0].temp > weather[1].temp ? '상승' : '하락'
+          },
+          {
+            icon: `${weather[0].bodyTemp}°C`, 
+            title: 'Apparent Temperature', 
+            description: '체감 온도', 
+            value: `${weather[0].bodyTemp}°C`, 
+            change: `${(weather[0].bodyTemp - weather[1].bodyTemp).toFixed(2)}°C`, 
+            changeDescription: weather[0].bodyTemp > weather[1].bodyTemp ? '상승' : '하락'
+          },
+          {
+            icon: `${weather[0].humidity}%`, 
+            title: 'Humidity', 
+            description: '습도', 
+            value: `${weather[0].humidity}%`, 
+            change: `${(weather[0].humidity - weather[1].humidity).toFixed(2)}%`, 
+            changeDescription: weather[0].humidity > weather[1].humidity ? '증가' : '감소'
+          },
+          {
+            icon: `${weather[0].rain}mm`, 
+            title: 'Rainfall', 
+            description: '강수량', 
+            value: `${weather[0].rain}mm 예상`, 
+            change: `${(weather[0].rain - weather[1].rain).toFixed(2)}mm`, 
+            changeDescription: '예상'
+          }
+        ];
+
+        setWeatherData(formattedWeatherData);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchWeatherData();
+  }, []);
+
   return (
     <div className='flex flex-col w-full'>
         <div className='flex justify-end items-center w-full'>

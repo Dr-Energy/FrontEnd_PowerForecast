@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoArrowDownRight,GoArrowUpRight } from "react-icons/go";
 
-const WeatherCard = ({ icon, title, description, value, change}) => {
+const WeatherCard = ({ icon, title, description, value, change, changeDescription}) => {
     const ArrowIcon = change >= 0 ? GoArrowUpRight : GoArrowDownRight;
     const fontColor = change > 0 ? '#2587bd' : '#cb7123';
     // const opacity = 0.8;
@@ -16,7 +16,7 @@ const WeatherCard = ({ icon, title, description, value, change}) => {
       </div>
       <div className='flex justify-center items-center w-full'>
         <p className={change >= 0 ? "text-green-500" : "text-red-500"}><span className="inline-block w-4 h-4 text-xl mr-1"><ArrowIcon /></span>
-        <span className='text-black text-sm'>{value}</span></p>
+        <span className='text-black text-sm'>{change} {changeDescription}</span></p>
       </div>
     </div>
   );
