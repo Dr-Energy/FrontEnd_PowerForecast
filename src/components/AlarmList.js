@@ -1,17 +1,32 @@
 import { UserIcon } from '@heroicons/react/20/solid';
-import React from 'react';
+import React, {useState} from 'react';
+import { AiOutlineRise, AiOutlineAlert, AiOutlineFall } from "react-icons/ai";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 const AlarmList = ({ data, formatDateTime, limit }) => {
+  //const [eventType, setEventType]=useState();
   const displayData = limit ? data.slice(0, limit) : data;
+  const getIcon = (alertType) => {
+    switch (alertType) {
+      case '이상':
+        return <AiOutlineAlert className="h-5 w-5 text-red-500" aria-hidden="true" />;
+      case '상승':
+        return <AiOutlineRise className="h-5 w-5 text-green-500" aria-hidden="true" />;
+      case '감소':
+        return <AiOutlineFall className="h-5 w-5 text-blue-500" aria-hidden="true" />;
+      default:
+        return <UserIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />;
+    }
+  };
 
   return (
-    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-96 overflow-auto">
+    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-auto overflow-auto">
       <ul role="list" className="mb-8">
         {displayData.map((event, eventIdx) => (
+          
           <li key={event.alertTime + event.region.eupmyeondong + eventIdx}>
             <div className="relative pb-5">
               {/* {eventIdx !== displayData.length - 1 ? ( */}
@@ -30,12 +45,19 @@ const AlarmList = ({ data, formatDateTime, limit }) => {
                 </div> */}
                 <div className="flex flex-col justify-center items-start min-w-0 flex-1 pt-1.5">
                     <div className="flex flex-wrap items-center">
-                        <p className="text-sm text-gray-500">
-                        {event.region.sido} {event.region.gugun} {event.region.eupmyeondong} - {event.alertType} 
-                        </p>
+                        <span
+                    className={classNames(
+                      ' flex justify-center items-center h-8 w-8 rounded-full ring-2 ring-white mr-2'
+                    )}
+                  >
+                    {getIcon(event.alertType)}
+                  </span>  
                         <time dateTime={event.alertTime} className="text-sm text-gray-500">
-                        {formatDateTime(event.alertTime)}
+                        {formatDateTime(event.alertTime)} &nbsp;
                         </time>
+                        <p className="text-sm text-gray-500">
+                        {event.region.sido} {event.region.gugun} {event.region.eupmyeondong} - {event.alertType}
+                        </p>
                     </div>
                     </div>
               </div>

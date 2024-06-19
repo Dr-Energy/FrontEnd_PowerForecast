@@ -1,9 +1,10 @@
 import React from 'react';
-import { GoArrowDownRight,GoArrowUpRight } from "react-icons/go";
+import { GoArrowDownRight, GoArrowUpRight, GoArrowRight } from "react-icons/go";
 
-const WeatherCard = ({ icon, title, description, value, change, changeDescription}) => {
-    const ArrowIcon = change >= 0 ? GoArrowUpRight : GoArrowDownRight;
-    const fontColor = change > 0 ? '#2587bd' : '#cb7123';
+const WeatherCard = ({ icon, description, changeValue, change, changeDescription}) => {
+    const ArrowIcon = change > 0 ? GoArrowUpRight : change < 0 ? GoArrowDownRight : GoArrowRight;
+    const fontColor = change > 0 ? '#2587bd' : change < 0 ? '#cb7123' : '#2E7549';
+    const textColor = change > 0 ? "text-blue-500" : change < 0 ? "text-red-500" : "text-[#2E7549]";
     // const opacity = 0.8;
   return (
     <div /* style={{backgroundColor, opacity}}*/ className="bg-white bg-opacity-80 p-5 rounded-lg shadow-md flex flex-col items-center justify-between w-full mt-5">
@@ -15,8 +16,8 @@ const WeatherCard = ({ icon, title, description, value, change, changeDescriptio
         {icon}
       </div>
       <div className='flex justify-center items-center w-full'>
-        <p className={change >= 0 ? "text-green-500" : "text-red-500"}><span className="inline-block w-4 h-4 text-xl mr-1"><ArrowIcon /></span>
-        <span className='text-black text-sm'>{change} {changeDescription}</span></p>
+        <p className={textColor}><span className="inline-block w-4 h-4 text-xl mr-1"><ArrowIcon /></span>
+        <span className='text-black text-sm'>{changeValue} {changeDescription}</span></p>
       </div>
     </div>
   );

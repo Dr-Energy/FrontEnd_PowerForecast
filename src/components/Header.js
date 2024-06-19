@@ -1,6 +1,8 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLoggedInState, userState } from '../recoil/atoms';
 import { Link } from 'react-router-dom';
+import { IoMdPerson } from "react-icons/io";
+
 
 export default function Header({ title }) {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -28,14 +30,12 @@ export default function Header({ title }) {
         <div className='flex justify-center items-center'>
           {isLoggedIn ? (
             <>
-              <button onClick={handleLogout} className='bg-transparent text-white rounded-3xl p-2 mx-2 text-sm shadow hover:bg-gray-200 hover:bg-opacity-20'>
+              <button onClick={handleLogout} className='bg-transparent text-white rounded-3xl p-2 mx-2 text-base shadow hover:bg-gray-200 hover:bg-opacity-20'>
                 Logout
               </button>
-              <Link to="/myPage" className="flex justify-center items-center font-bold text-sm bg-transparent text-white rounded-3xl p-1 px-2 mx-1 shadow hover:bg-gray-200 hover:bg-opacity-20">
-                <img
-                  src="https://via.placeholder.com/40"
-                  alt="profile"
-                  className="w-10 h-10 rounded-full mr-2"
+              <Link to="/myPage" className="flex justify-center items-center text-base bg-transparent text-white rounded-3xl p-1 px-2 mx-1 shadow hover:bg-gray-200 hover:bg-opacity-20">
+              <IoMdPerson 
+                  className="w-6 h-6 mr-2"
                 />
                 {user?.nickname}
               </Link>
