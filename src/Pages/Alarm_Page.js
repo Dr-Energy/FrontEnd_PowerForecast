@@ -1,16 +1,26 @@
-
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import AlarmHistory from '../components/AlarmHistory'
 import LocationSel from '../components/LocationSel'
-import React, { useState } from'react'
+import React, { useState, useEffect } from'react'
+import { useSetRecoilState } from 'recoil';
+import { alertCountState , alertState } from '../recoil/atoms';
 
 export default function Alarm_Page() {
+  const setAlertCount = useSetRecoilState(alertCountState);
+  const setAlerts = useSetRecoilState(alertState);
   const [selectedLocation, setSelectedLocation] = useState({
     sido: '',
     gugun: '',
     eupmyeondong: ''
   });
+
+  useEffect(() => {
+    // 알람 이력을 확인하면 alertCount를 0으로 설정
+    setAlertCount(0);
+    setAlerts([]);
+  }, [setAlertCount]);
+
   return (
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"

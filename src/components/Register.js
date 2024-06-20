@@ -16,6 +16,7 @@ export default function Register() {
   });
   const [isMemberIdUnique, setIsMemberIdUnique] = useState(null); // ID 중복 확인 결과를 저장할 상태
   const [checkMessage, setCheckMessage] = useState('');
+  const [passwordValid, setPasswordValid] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +24,9 @@ export default function Register() {
       ...formData,
       [name]:value
     });
+    if(name === 'password'){
+      checkPw(value);
+    }
   };
   
   const handleRegionChange = (region) => {
@@ -63,6 +67,10 @@ export default function Register() {
     }
   };
 
+  const checkPw = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+    setPasswordValid(regex.test(password));
+  }
   return (
     <form onSubmit={handleSubmit} className='w-full max-w-xl mx-auto'>
     <div className="bg-white bg-opacity-30 p-10 rounded-md shadow-md w-full">
@@ -88,21 +96,22 @@ export default function Register() {
               <label htmlFor="nickname" className="block text-sm font-medium text-white">Nickname</label>
               <input type="text" id="nickname" name="nickname" value={formData.nickname} onChange={handleChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-transparent" />
             </div>
-            <div>
+            <div className='mt-4'>
               <label htmlFor="password" className="block text-sm font-medium text-white">Password</label>
               <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-transparent" />
+              {!passwordValid && <p className="text-red-800 text-sm mt-1">비밀번호는 대소문자와 숫자를 각각 하나 이상 포함해야 합니다.</p>}
             </div>
-            <div>
+            <div className='mt-4'>
               <label htmlFor="phoneNumber" className="block text-sm font-medium text-white">Cellphone</label>
               <input type="text" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-transparent" />
             </div>
-            <div>
+            <div className='mt-4'>
               <label htmlFor="region" className="block text-sm font-medium text-white">Address</label>
-              <div className='flex justify-start items-center py-2'>
+              <div className='flex justify-start items-center'>
               <LocationSel onChange={handleRegionChange}/>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-8">
               <button type="submit" className="w-full py-2 px-4 bg-[#153c27] text-white font-semibold rounded-md hover:bg-opacity-80">REGISTER</button>
             </div>
           {/* </form> */}

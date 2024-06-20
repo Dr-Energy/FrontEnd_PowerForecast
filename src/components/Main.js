@@ -15,6 +15,7 @@ const getIconByWeather = (value, category, temp) => {
         icon = <WiDaySunny />;
         break;
       case '2':
+      case '3':
         icon = <WiDayCloudy />;
         break;
       case '4':
@@ -161,7 +162,7 @@ export default function Main() {
             value: `${weather[0].rain}mm 예상`, 
             changeValue: `${(weather[0].rain - weather[1].rain).toFixed(2)}mm`, 
             change: (weather[0].rain - weather[1].rain).toFixed(2), 
-            changeDescription: '예상'
+            changeDescription: weather[0].rain > weather[1].rain ? '증가' : weather[0].rain < weather[1].rain ? '감소' : '예상'
           }
         ];
 

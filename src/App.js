@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import WebSocketProvider from './components/WebSocketProvider';
 
 import My_Page from './Pages/My_Page.js';
 import Main_Page from './Pages/Main_Page.js';
@@ -23,6 +24,7 @@ const PrivateRoute = ({ children }) => {
 function App() {
   return (
     <RecoilRoot>
+      <WebSocketProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main_Page />} />
@@ -35,6 +37,7 @@ function App() {
           <Route path="/history" element={<Alarm_Page />} />
         </Routes>
       </BrowserRouter>
+      </WebSocketProvider>
     </RecoilRoot>
   );
 }

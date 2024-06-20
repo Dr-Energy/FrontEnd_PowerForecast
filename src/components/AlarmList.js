@@ -23,7 +23,7 @@ const AlarmList = ({ data, formatDateTime, limit }) => {
   };
 
   return (
-    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-auto overflow-auto">
+    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-96 overflow-auto">
       <ul role="list" className="mb-8">
         {displayData.map((event, eventIdx) => (
           
@@ -47,7 +47,7 @@ const AlarmList = ({ data, formatDateTime, limit }) => {
                     <div className="flex flex-wrap items-center">
                         <span
                     className={classNames(
-                      ' flex justify-center items-center h-8 w-8 rounded-full ring-2 ring-white mr-2'
+                      ' flex justify-center items-center h-8 w-8 rounded-full ring-2 ring-white m-2'
                     )}
                   >
                     {getIcon(event.alertType)}

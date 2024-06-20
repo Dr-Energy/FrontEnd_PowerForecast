@@ -41,3 +41,18 @@ export const isLoggedInState = atom({
     },
   ],
 });
+
+export const alertState = atom({
+  key: 'alertState',
+  default: [],
+});
+
+export const alertCountState = atom({
+  key: 'alertCountState',
+  default: 0,
+});
+
+export const alertLoadingState = atom({
+  key: 'alertLoadingState',
+  default: true,
+});
