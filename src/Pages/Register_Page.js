@@ -2,9 +2,11 @@ import React from 'react'
 import Register from '../components/Register'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import Footer from '../components/Footer'
 
 export default function Register_Page() {
   return (
+    <div>
   <div className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover">
   <Sidebar/>
     <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">
@@ -13,6 +15,8 @@ export default function Register_Page() {
       <Register/>
       </div>
     </div>
+  </div>
+  <Footer/>
   </div>
   )
 }

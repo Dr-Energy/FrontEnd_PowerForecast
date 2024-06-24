@@ -2,9 +2,11 @@ import React from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import FindId from '../components/FindId'
+import Footer from '../components/Footer'
 
 export default function FindId_Page() {
   return (
+    <div>
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
   
@@ -17,6 +19,8 @@ export default function FindId_Page() {
       <FindId/>
       </div>
     </div>
+</div>
+<Footer/>
 </div>
   )
 }

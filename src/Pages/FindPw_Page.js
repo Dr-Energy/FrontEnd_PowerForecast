@@ -2,9 +2,11 @@ import React from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import FindPw from '../components/FindPw'
+import Footer from '../components/Footer';
 
 export default function FindPw_Page() {
   return (
+    <div>
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
   
@@ -17,6 +19,8 @@ export default function FindPw_Page() {
       <FindPw/>
       </div>
     </div>
+</div>
+<Footer/>
 </div>
   )
 }

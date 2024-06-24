@@ -2,9 +2,11 @@ import React from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import LoginForm from '../components/LoginForm'
+import Footer from '../components/Footer'
 
 export default function Login_Page() {
   return (
+    <div>
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
   
@@ -17,6 +19,8 @@ export default function Login_Page() {
       <LoginForm/>
       </div>
     </div>
+</div>
+<Footer/>
 </div>
   )
 }

@@ -23,7 +23,7 @@ const AlarmList = ({ data, formatDateTime, limit }) => {
   };
 
   return (
-    <div className="flow-root bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl h-96 overflow-auto">
+    <div className=" bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full overflow-auto h-cth">
       <ul role="list" className="mb-8">
         {displayData.map((event, eventIdx) => (
           

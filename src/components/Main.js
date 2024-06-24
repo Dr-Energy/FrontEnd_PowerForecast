@@ -6,6 +6,7 @@ import WeatherCard from './mainComponents/WeatherCard';
 import LocationSel from './LocationSel';
 import { WiDaySunny, WiDayCloudy, WiCloudy, WiRain, WiRainMix, WiSnow, WiShowers } from "react-icons/wi";
 import AlarmList from './AlarmList';
+import PowerGraph from './PowerGraph';
 
 const getIconByWeather = (value, category, temp) => {
   let icon;
@@ -181,12 +182,13 @@ export default function Main() {
         <div className='flex justify-end items-center w-full'>
         <LocationSel onChange={setSelectedLocation}/>
         </div>
-        <div className="grid gap-3">
+        <div className="grid gap-3"> 
           
             <div className="grid grid-cols-4 gap-1 w-full">
                     {isLoading ? (
-                      <div className='col-span-4 flex justify-center items-center w-full py-4'>
-                    <div className='loader ease-linear rounded-full border-8 border-t-8 h-20 w-20'></div></div>
+                      <div className='col-span-4 flex justify-center items-center py-4'>
+                      <div className='loader ease-linear rounded-full border-8 border-t-8'></div>
+                    </div>
                 ) : (
                     weatherData.map((data, index) => (
                         <WeatherCard
@@ -205,15 +207,18 @@ export default function Main() {
             </div>
             <div className='flex justify-center items-start w-full'>
                 <div className='w-5/6 mr-3'>
-                    <div>
-                        <img className="col-span-3 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt=""/>
+                    <div className="col-span-2 h-auto rounded-lg">
+                        <PowerGraph/>
+                        <div className='mt-3'>
+                        <PowerGraph/>
+                        </div>
                     </div>
-                    <div>
-                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-                    </div>
+                    {/* <div>
+                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full  my-3'>전력 이상 확인 그래프</div>
+                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full my-3'>전력 이상 확인 그래프</div>
+                    </div> */}
                 </div>
-                <div className='h-auto'>
+                <div>
                   <p className='text-center border-2 bg-white bg-opacity-30 mb-3 py-3 rounded-lg'>최근 알람 이력</p>
                   <AlarmList data={data} formatDateTime={formatDateTime} limit={5} />
                 </div>

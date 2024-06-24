@@ -5,6 +5,7 @@ import LocationSel from '../components/LocationSel'
 import React, { useState, useEffect } from'react'
 import { useSetRecoilState } from 'recoil';
 import { alertCountState , alertState } from '../recoil/atoms';
+import Footer from '../components/Footer';
 
 export default function Alarm_Page() {
   const setAlertCount = useSetRecoilState(alertCountState);
@@ -22,6 +23,7 @@ export default function Alarm_Page() {
   }, [setAlertCount]);
 
   return (
+    <div>
     <div 
   className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
   
@@ -35,6 +37,8 @@ export default function Alarm_Page() {
       <AlarmHistory selectedLocation={selectedLocation} className="min-w-[300px]"/>
       </div>
     </div>
+</div>
+<Footer/>
 </div>
   )
 }

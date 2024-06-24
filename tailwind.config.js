@@ -7,7 +7,23 @@ module.exports = {
         custom: ['MaruBuri', 'sans-serif'],
       },
     },
+    height: {
+      cth: '600px'
+     }
   },
   plugins: [],
 }
 
+// module.exports = {
+//   theme: {
+//     extend: {
+//       fontFamily: {
+//         maru: ['MaruBuri', 'sans-serif'],
+//         blueroad: ['Yeongdeok Blueroad', 'sans-serif'],
+//         haeparang: ['Yeongdeok Haeparang', 'sans-serif'],
+//       },
+//     },
+//   },
+//   variants: {},
+//   plugins: [],
+// }

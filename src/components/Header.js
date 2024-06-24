@@ -22,7 +22,7 @@ export default function Header({ title }) {
 
   console.log('logged in', isLoggedIn);
   return (
-    <header className="w-full flex justify-start items-center bg-white bg-opacity-20 p-3 shadow rounded-lg">
+    <header className="w-full flex justify-start items-center bg-white bg-opacity-20 p-3 shadow rounded-lg Haeparang">
       <div className="flex w-full justify-between items-center ml-4">
         <div className='justify-start items-center text-2xl text-white'>
           <span>{title}</span>
