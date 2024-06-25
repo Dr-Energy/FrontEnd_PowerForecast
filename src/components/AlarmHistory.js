@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { userLocationState, isLoggedInState } from '../recoil/atoms';
 import axios from 'axios';
 import AlarmList from './AlarmList';
+import PowerGraph from './PowerGraph';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -44,9 +45,12 @@ export default function AlarmHistory({ selectedLocation }) {
 
   return (
     <div className='m-5 w-9/12 min-w-[300px]'>
-      <AlarmList data={data} formatDateTime={formatDateTime} />
-      <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
-      <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div>
+      <AlarmList data={data} formatDateTime={formatDateTime} height="h-cth"/>
+      {/* <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
+      <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div> */}
+      <div className='mt-3'>
+      <PowerGraph/>
+      </div>
     </div>
   );
 }

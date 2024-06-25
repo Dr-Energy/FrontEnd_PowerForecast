@@ -7,6 +7,7 @@ import LocationSel from './LocationSel';
 import { WiDaySunny, WiDayCloudy, WiCloudy, WiRain, WiRainMix, WiSnow, WiShowers } from "react-icons/wi";
 import AlarmList from './AlarmList';
 import PowerGraph from './PowerGraph';
+import PowerGauge from './PowerGauge';
 
 const getIconByWeather = (value, category, temp) => {
   let icon;
@@ -178,13 +179,13 @@ export default function Main() {
   }, [isLoggedIn, userLocation, selectedLocation]);
 
   return (
-    <div className='flex flex-col w-full'>
-        <div className='flex justify-end items-center w-full'>
+    <div className='flex flex-col justify-start w-full'>
+        <div className='flex justify-start items-center w-full'>
         <LocationSel onChange={setSelectedLocation}/>
         </div>
-        <div className="grid gap-3"> 
+        {/* <div className="grid gap-3">  */}
           
-            <div className="grid grid-cols-4 gap-1 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 w-full mb-5">
                     {isLoading ? (
                       <div className='col-span-4 flex justify-center items-center py-4'>
                       <div className='loader ease-linear rounded-full border-8 border-t-8'></div>
@@ -206,11 +207,16 @@ export default function Main() {
                 {/* </div> */}
             </div>
             <div className='flex justify-center items-start w-full'>
-                <div className='w-5/6 mr-3'>
+                <div className='w-2/3 mr-3'>
                     <div className="col-span-2 h-auto rounded-lg">
                         <PowerGraph/>
-                        <div className='mt-3'>
-                        <PowerGraph/>
+                        <div className='flex mt-3'>
+                          <div className='mr-3 flex-1 w-2/5'>
+                            <PowerGauge/>
+                          </div>
+                          <div className='flex-1 w-2/5'>
+                            <PowerGauge/>
+                          </div>
                         </div>
                     </div>
                     {/* <div>
@@ -218,12 +224,12 @@ export default function Main() {
                     <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full my-3'>전력 이상 확인 그래프</div>
                     </div> */}
                 </div>
-                <div>
-                  <p className='text-center border-2 bg-white bg-opacity-30 mb-3 py-3 rounded-lg'>최근 알람 이력</p>
-                  <AlarmList data={data} formatDateTime={formatDateTime} limit={5} />
+                <div className='w-1/3'>
+                  <p className='text-center border-2 bg-white bg-opacity-30 mb-3 py-3 rounded-lg Haeparang'>최근 알람 이력</p>
+                  <AlarmList data={data} formatDateTime={formatDateTime} limit={5} height="h-cth2"/>
                 </div>
             </div>
         </div>
-    </div>
+    // </div>
   )
 }

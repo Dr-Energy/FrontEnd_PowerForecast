@@ -8,7 +8,8 @@ module.exports = {
       },
     },
     height: {
-      cth: '600px'
+      cth: '600px',
+      cth2: '560px'
      }
   },
   plugins: [],

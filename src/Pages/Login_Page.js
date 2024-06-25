@@ -7,10 +7,7 @@ import Footer from '../components/Footer'
 export default function Login_Page() {
   return (
     <div>
-    <div 
-  className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover"
-  
->
+    <div className="flex h-screen bg-[url('./components/background/bg4.png')] bg-cover">
   {/* <img src={bg1}/>  */}
   <Sidebar/>
     <div className="flex-grow flex flex-col items-center justify-start relative p-3 m-1">

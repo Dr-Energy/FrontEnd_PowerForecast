@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const AlarmList = ({ data, formatDateTime, limit }) => {
+const AlarmList = ({ data, formatDateTime, limit, height }) => {
   //const [eventType, setEventType]=useState();
   const displayData = limit ? data.slice(0, limit) : data;
   const getIcon = (alertType) => {
@@ -23,7 +23,7 @@ const AlarmList = ({ data, formatDateTime, limit }) => {
   };
 
   return (
-    <div className=" bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full overflow-auto h-cth">
+    <div className={` bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full overflow-auto ${height} min-w-80`}>
       <ul role="list" className="mb-8">
         {displayData.map((event, eventIdx) => (
           

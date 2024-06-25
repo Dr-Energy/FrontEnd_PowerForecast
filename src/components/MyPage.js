@@ -66,10 +66,9 @@ export default function MyPage() {
   }
 
   return (
-    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl'>
-      <div className="mt-8 flow-root">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div className='bg-white bg-opacity-50 p-10 rounded-lg shadow-lg w-full max-w-2xl mt-8 flow-root'>
+
+
             <table className="min-w-full divide-y divide-gray-300">
               <tbody className="divide-y divide-gray-200">
                 <tr>
@@ -104,10 +103,9 @@ export default function MyPage() {
               >
                 탈퇴하기
               </button>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
+
+
   );
 }

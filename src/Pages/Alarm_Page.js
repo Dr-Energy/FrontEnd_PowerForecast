@@ -34,7 +34,7 @@ export default function Alarm_Page() {
       <Header title="알람이력"/>
       <div className='flex flex-col items-center justify-center w-full max-w-3xl mt-3 min-w-[300px]'>
         <LocationSel onChange={setSelectedLocation} className="min-w-[300px]"/>
-      <AlarmHistory selectedLocation={selectedLocation} className="min-w-[300px]"/>
+      <AlarmHistory selectedLocation={selectedLocation}/>
       </div>
     </div>
 </div>

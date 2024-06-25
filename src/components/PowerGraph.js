@@ -37,7 +37,7 @@ const PowerGraph = () => {
           <div className='loader ease-linear rounded-full border-8 border-t-8 h-20 w-20'></div>
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={245}>
+        <ResponsiveContainer height={245}>
               <LineChart data={powerData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="time" tickFormatter={formatXAxis}/>

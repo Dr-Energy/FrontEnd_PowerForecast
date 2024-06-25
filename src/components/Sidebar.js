@@ -10,7 +10,7 @@ const Sidebar = () => {
     const alertCount = useRecoilValue(alertCountState);
 
 return (
-<div className="bg-white bg-opacity-20 text-white flex flex-col p-4 m-4 rounded-xl min-w-52 Haeparang">
+<div className="bg-white bg-opacity-20 text-white flex flex-col p-4 m-4 rounded-xl min-h-screen max-h-full Haeparang">
 <div className="text-3xl mb-8 flex items-center justify-center pt-3">닥터 에너지 <span className='pl-2 text-green-200 text-xl'>{<FaPowerOff/>}</span></div>
     <Link to="/">
     <SidebarItem icon={<LuLayoutDashboard />} label="Dashboard"/>
