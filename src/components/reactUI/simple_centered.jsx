@@ -1,18 +1,11 @@
-// import React from 'react';
-
-// export default function Footer() {
-//   return (
-//     <footer className="flex justify-center items-center w-full h-20 p-8 Haeparang text-white bg-[#ccd5ae]">
-//       2024 Doctor Energy. All rights reserved.
-//     </footer>
-//   );
-// }
 const navigation = {
   main: [
-    { name: 'FrontEnd', href: 'https://github.com/Dr-Energy/FrontEnd_PowerForecast' },
-    { name: 'BackEnd', href: 'https://github.com/Dr-Energy/Backend_PowerForecast' },
-    { name: 'DataAnalysis', href: 'https://github.com/Dr-Energy/DA_PowerForecast' },
-    { name: 'DoctorEnergy', href: 'https://github.com/Dr-Energy' }
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Jobs', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Accessibility', href: '#' },
+    { name: 'Partners', href: '#' },
   ],
   social: [
     {
@@ -79,21 +72,29 @@ const navigation = {
   ],
 }
 
-export default function Footer() {
+export default function Example() {
   return (
-    <footer className="bg-[#1e2824]">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-5 lg:px-8">
+    <footer className="bg-white">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="pb-6">
-              <a href={item.href} className="text-sm leading-6 text-white hover:text-gray-900">
+              <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
                 {item.name}
               </a>
             </div>
           ))}
         </nav>
-        <p className="mt-5 text-center text-xs leading-5 text-white">
-          &copy; 2024 Doctor Energy. All rights reserved.
+        <div className="mt-10 flex justify-center space-x-10">
+          {navigation.social.map((item) => (
+            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">{item.name}</span>
+              <item.icon className="h-6 w-6" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+          &copy; 2020 Your Company, Inc. All rights reserved.
         </p>
       </div>
     </footer>

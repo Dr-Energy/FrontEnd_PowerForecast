@@ -64,27 +64,15 @@ export default function Main() {
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const [data, setData] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
+  const [powerData, setPowerData] = useState([]);
+  const [predictPower, setPredictPower] = useState([]);
+  const [actualPower, setActualPower] = useState([]);
   const [isLoading, setIsLoading]=useState(false);
   const [selectedLocation, setSelectedLocation] = useState({
     sido: '',
     gugun: '',
     eupmyeondong: ''
   });
-
-  //날씨코드마다 웨더카드 중 날씨의 아이콘을 다르게 설정
-  // const getIconByWeather = (sky, pty) => {
-  //   if (pty !== 0) {
-  //     if (pty === 1) return <WiRain className="text-8xl" />;
-  //     if (pty === 2) return <WiRainMix className="text-8xl" />;
-  //     if (pty === 3) return <WiSnow className="text-8xl" />;
-  //     if (pty === 4) return <WiShowers className="text-8xl" />;
-  //   } else {
-  //     if (sky === 1) return <WiDaySunny className="text-8xl" />;
-  //     if (sky === 3) return <WiDayCloudy className="text-8xl" />;
-  //     if (sky === 4) return <WiCloudy className="text-8xl" />;
-  //   }
-  //   return <WiDaySunny className="text-7xl" />; // 기본 아이콘
-  // };
 
   //지역별 알람이력을 표현하는 코드
   useEffect(() => {
@@ -118,6 +106,7 @@ export default function Main() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       setIsLoading(true);
+      //날씨데이터 페치
       try {
         let response;
         if (selectedLocation.sido) {
@@ -178,6 +167,71 @@ export default function Main() {
     fetchWeatherData();
   }, [isLoggedIn, userLocation, selectedLocation]);
 
+  useEffect(() => {
+    //그래프 데이터 페치
+    const fetchPowerData = async () => {
+      try {
+        let response;
+        if (selectedLocation.sido) {
+          const { sido, gugun, eupmyeondong } = selectedLocation;
+          const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;
+          response = await axios.get(`http://10.125.121.224:8080/predict/oneday?${query}`);
+        } else if (isLoggedIn && userLocation) {
+          response = await axios.get(`http://10.125.121.224:8080/predict/oneday/${userLocation}`);
+        } else {
+          response = await axios.get('http://10.125.121.224:8080/predict/oneday');
+        }
+        setPowerData(response.data);
+      } catch (error) {
+        console.error('Error fetching power data:', error);
+      }
+    };
+
+    fetchPowerData();
+  },[isLoggedIn, userLocation, selectedLocation]);
+  //
+  useEffect(()=>{
+    const fetchPredictGaugeData = async () => {
+      try {
+        let response;
+        if (selectedLocation.sido) {
+          const { sido, gugun, eupmyeondong } = selectedLocation;
+          const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;
+          response = await axios.get(`http://10.125.121.224:8080/predict/currentTime?${query}`);
+        }else if (isLoggedIn && userLocation) {
+          response = await axios.get(`http://10.125.121.224:8080/predict/currentTime/${userLocation}`);
+        } else {
+          response = await axios.get('http://10.125.121.224:8080/predict/currentTime');
+        }
+        setPredictPower(response.data.power);
+      } catch (error) {
+        console.error('Error fetching power gauge data:', error);
+      }
+    };
+    fetchPredictGaugeData();
+  },[isLoggedIn, userLocation, selectedLocation]);
+
+  useEffect(()=>{
+    const fetchActualGaugeData = async () => {
+      try {
+        let response;
+        if (selectedLocation.sido) {
+          const { sido, gugun, eupmyeondong } = selectedLocation;
+          const query = `sido=${sido}&gugun=${gugun}&eupmyeondong=${eupmyeondong}`;
+          response = await axios.get(`http://10.125.121.224:8080/actual/currentTime?${query}`);
+        }else if (isLoggedIn && userLocation) {
+          response = await axios.get(`http://10.125.121.224:8080/actual/currentTime/${userLocation}`);
+        } else {
+          response = await axios.get('http://10.125.121.224:8080/actual/currentTime');
+        }
+        setActualPower(response.data.power);
+        console.log("response:",response.data.power);
+      } catch (error) {
+        console.error('Error fetching power gauge data:', error);
+      }
+    };
+    fetchActualGaugeData();
+  },[isLoggedIn, userLocation, selectedLocation]);
   return (
     <div className='flex flex-col justify-start w-full'>
         <div className='flex justify-start items-center w-full'>
@@ -209,20 +263,16 @@ export default function Main() {
             <div className='flex justify-center items-start w-full'>
                 <div className='w-2/3 mr-3'>
                     <div className="col-span-2 h-auto rounded-lg">
-                        <PowerGraph/>
+                        <PowerGraph powerData={powerData}/>
                         <div className='flex mt-3'>
                           <div className='mr-3 flex-1 w-2/5'>
-                            <PowerGauge/>
+                            <PowerGauge powerData={predictPower}/>
                           </div>
                           <div className='flex-1 w-2/5'>
-                            <PowerGauge/>
+                            <PowerGauge powerData={actualPower}/>
                           </div>
                         </div>
                     </div>
-                    {/* <div>
-                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full  my-3'>전력 이상 확인 그래프</div>
-                    <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full my-3'>전력 이상 확인 그래프</div>
-                    </div> */}
                 </div>
                 <div className='w-1/3'>
                   <p className='text-center border-2 bg-white bg-opacity-30 mb-3 py-3 rounded-lg Haeparang'>최근 알람 이력</p>
