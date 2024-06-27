@@ -263,13 +263,13 @@ export default function Main() {
             <div className='flex justify-center items-start w-full'>
                 <div className='w-2/3 mr-3'>
                     <div className="col-span-2 h-auto rounded-lg">
-                        <PowerGraph powerData={powerData}/>
+                        <PowerGraph powerData={powerData} title='당일 전력 수요 예측 그래프'/>
                         <div className='flex mt-3'>
                           <div className='mr-3 flex-1 w-2/5'>
-                            <PowerGauge powerData={predictPower}/>
+                            <PowerGauge powerData={predictPower} title='현재 예측 전력소비 비율'/>
                           </div>
                           <div className='flex-1 w-2/5'>
-                            <PowerGauge powerData={actualPower}/>
+                            <PowerGauge powerData={actualPower} title='실제 전력소비 비율'/>
                           </div>
                         </div>
                     </div>

@@ -49,9 +49,18 @@ export const alertState = atom({
 
 export const alertCountState = atom({
   key: 'alertCountState',
-  default: 0,
+  default: (() => {
+    const savedAlertCount = localStorage.getItem('alertCount');
+    return savedAlertCount !== null ? parseInt(savedAlertCount, 10) : 0;
+  })(),
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        localStorage.setItem('alertCount', newValue);
+      });
+    },
+  ],
 });
-
 export const alertLoadingState = atom({
   key: 'alertLoadingState',
   default: true,

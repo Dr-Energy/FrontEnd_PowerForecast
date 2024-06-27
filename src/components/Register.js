@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import LocationSel from './LocationSel'
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [formData, setFormData]=useState({
@@ -17,6 +18,7 @@ export default function Register() {
   const [isMemberIdUnique, setIsMemberIdUnique] = useState(null); // ID 중복 확인 결과를 저장할 상태
   const [checkMessage, setCheckMessage] = useState('');
   const [passwordValid, setPasswordValid] = useState(true);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +46,7 @@ export default function Register() {
     axios.post('http://10.125.121.224:8080/user/register', formData)
       .then(response => {
         console.log('Data sent successfully:', response.data);
+        navigate('/login'); // 성공적으로 등록된 후 로그인 페이지로 리디렉션
       })
       .catch(error => {
         console.error('Error:', error);

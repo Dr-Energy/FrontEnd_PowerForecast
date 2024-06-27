@@ -2,6 +2,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLoggedInState, userState } from '../recoil/atoms';
 import { Link } from 'react-router-dom';
 import { IoMdPerson } from "react-icons/io";
+import { useEffect } from 'react';
 
 
 export default function Header({ title }) {
@@ -19,8 +20,7 @@ export default function Header({ title }) {
     localStorage.removeItem('memberId');
     localStorage.removeItem('USER_LOCATION');
   };
-
-  console.log('logged in', isLoggedIn);
+  
   return (
     <header className="w-full flex justify-start items-center bg-white bg-opacity-20 p-3 shadow rounded-lg Haeparang">
       <div className="flex w-full justify-between items-center ml-4">

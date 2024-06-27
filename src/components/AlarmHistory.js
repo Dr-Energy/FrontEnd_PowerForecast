@@ -107,9 +107,9 @@ export default function AlarmHistory({ selectedLocation }) {
       {/* <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>전력 이상 확인 그래프</div>
       <div className='bg-white bg-opacity-80 p-10 rounded-lg shadow-lg w-full max-w-2xl my-3'>지역 / 단지 월평균 전력소비량 비교</div> */}
       <div className='my-3'>
-      <PowerGraph powerData={onedayPowerData}/>
+      <PowerGraph powerData={onedayPowerData} title='작년대비 전력소모 비율'/>
       </div>
-      <PowerGraph powerData={monthPowerData}/>
+      <PowerGraph powerData={monthPowerData} title='한달 예측 전력 소모량'/>
     </div>
   );
 }

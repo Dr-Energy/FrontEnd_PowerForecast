@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GaugeChart from 'react-gauge-chart';
 
-export default function PowerGauge({powerData}) {
+export default function PowerGauge({powerData, title}) {
     // const [powerData, setPowerData] = useState();
     const [p, setP] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -29,10 +29,10 @@ export default function PowerGauge({powerData}) {
     //const percentage = parseFloat(powerData) / 100;
     return (
         <div className='flex flex-col items-center bg-white bg-opacity-80 rounded-lg p-5'>
-        <h2>전력 소비 비율 게이지</h2>
+        <h2>{title}</h2>
         <GaugeChart id="gauge-chart1"
             nrOfLevels={25}
-            colors={["#e03400", "#ffd60a", "#354f52"]}
+            colors={["#354f52", "#ffd60a", "#e03400"]}
             arcWidth={0.2}
             percent={p}
             textColor="#354f52"
@@ -42,22 +42,22 @@ export default function PowerGauge({powerData}) {
             //customNeedleStyle
         />
         <div className='flex justify-between w-full mt-4'>
-            <div>
+            {/* <div>
             <p>95</p>
             <p>Total projects</p>
+            </div> */}
+            <div>
+            <p style={{ color: '#354f52' }}>50% 미만</p>
+            <p>효율적</p>
             </div>
             <div>
-            <p style={{ color: '#354f52' }}>26</p>
-            <p>Completed</p>
+            <p style={{ color: '#FF5F6D' }}>50% 초과</p>
+            <p>비효율적</p>
             </div>
-            <div>
-            <p style={{ color: '#ffd60a' }}>35</p>
-            <p>Delayed</p>
-            </div>
-            <div>
+            {/* <div>
             <p style={{ color: '#FF5F6D' }}>35</p>
             <p>On going</p>
-            </div>
+            </div> */}
         </div>
         </div>
     )
