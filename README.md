@@ -14,4 +14,4 @@
 4. 데이터베이스에 등록되어있는 전화번호를 입력하여 아이디를 찾고 아이디와 전화번호를 이용하여 암호를 찾는 기능<br><br>
 ![find](https://github.com/user-attachments/assets/e7c0f766-0b9f-42d1-94d0-733434a56320)
 <br><br><br>
-<a href="https://youtu.be/izu8rs2vhy0">시연동영상</a>
+<a href="https://youtu.be/izu8rs2vhy0">[시연 전체동영상 입니다]</a>
