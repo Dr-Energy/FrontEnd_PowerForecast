@@ -5,7 +5,7 @@
 ## 개발환경
 - ### 개발기간: 2024.05.28 ~ 2024.06.27
 - ### 프로젝트 팀 구성: 이영인(Backend), 김우정(FrontEnd), 이세련(DataAnalysis)
-- ### 개발환경: IDE(Visual Studio Code), 브라우저(Chrome)
+- ### 개발환경: IDE(Visual Studio Code), 브라우저(Chrome), 개발언어(Javascript)
 - ### 사용기술: React, Recoil, Axios, Tailwind, HTML5<br><br>
 ## 주요기능 <a href="https://youtu.be/izu8rs2vhy0">[전체 시연동영상]</a> <br>
 1. 지역을 선택하면 기상청, 한국전력api를 통해 날씨 및 전력정보를 표현하는 기능<br><br>
